@@ -37,11 +37,12 @@ const BubblePage = () => {
       })
   };
 
+
+  // can see colors being deleted but codegrade won't pass, possibly because it's missing and not being tested in the codegrade.test.js file?
   const deleteColor = (colorToDelete) => {
     axiosWithAuth()
       .delete(`http://localhost:5000/api/colors/${id}`)
-      setColors(colors => colors.filter((color) => color.id !== colorToDelete.id))
-     
+      setColors(colors => colors.filter((color) => color.id !== colorToDelete.id)) 
   };
 
 
