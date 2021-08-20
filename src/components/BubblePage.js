@@ -37,30 +37,14 @@ const BubblePage = () => {
       })
   };
 
-  // const deleteColor = (colorToDelete) => {
-  //   axiosWithAuth()
-  //     .delete(`http://localhost:5000/api/colors/${id}`)
-  //     .then(res => {
-  //     const del = colors.filter(color => colorToDelete !== color.colorToDelete)
-  //     setColors(del)
-        // setColors(!colors)
-      // })
-  //     .catch(err => {
-  //       console.log(err)
-  //     }) 
-  // };
-
-  
   const deleteColor = (colorToDelete) => {
     axiosWithAuth()
       .delete(`http://localhost:5000/api/colors/${id}`)
-      .then(res => {
-      const del = colors.filter(color => colorToDelete !== color.colorToDelete)
-      setColors(del)
-      })
-      }
+      setColors(colors => colors.filter((color) => color.id !== colorToDelete.id))
+     
+  };
 
-  
+
   
 
 
