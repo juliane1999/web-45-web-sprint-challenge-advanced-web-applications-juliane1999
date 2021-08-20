@@ -14,7 +14,7 @@ const BubblePage = (props) => {
   const { push } = useHistory()
 
   useEffect(() => {
-    axiosWithAuth().get('/colors')
+    axiosWithAuth().get(`/colors`)
       .then(res => {
         setColors(res.data)
       })
@@ -23,28 +23,36 @@ const BubblePage = (props) => {
       })
   }, [])
 
+
+
   const toggleEdit = (value) => {
     setEditing({
       ...colors,
-      [value.target.name]:value.target.value
+      value: true
     });
   };
 
   const saveEdit = (editColor) => {
-    axiosWithAuth().put(`/colors/${id}`)
+    axiosWithAuth()
+      .put(`http://localhost:5000/api/colors/${id}`, editColor)
       .then(res=> {
-        setColors(res.data)
-        push(`/colors/${id}`)
+        setEditing(res.data)
+        // push(`/colors/${id}`)
       })
   };
 
   const deleteColor = (colorToDelete) => {
-    axiosWithAuth().delete(`/colors/${id}`)
+    axiosWithAuth()
+      .delete(`http://localhost:5000/api/colors/${id}`, { params: {id: colorToDelete }})
       .then(res => {
-        setColors(res.data)
-        push('bubble-page')
+        const del = colors.filter( color => id !== color.id)
+        setEditing(del)
+        // setColors(res.data)
+        // push('bubble-page')
       })
   };
+
+
 
   return (
     <div className="container">

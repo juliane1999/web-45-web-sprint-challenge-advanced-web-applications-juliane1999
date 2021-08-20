@@ -40,8 +40,6 @@ class Login extends React.Component {
       });
     }
   };
-    
-  //replace with error state
 
 
 
