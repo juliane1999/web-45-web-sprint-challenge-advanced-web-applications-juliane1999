@@ -1,23 +1,23 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from './components/PrivateRoute'
 import Login from "./components/Login";
 import "./styles.scss";
 import BubblePage from "./components/BubblePage";
+import axiosWithAuth from "./helpers/axiosWithAuth";
 
 function App() {
 
-  const Logout = (props)=> { 
-    useEffect(()=> {
-        axiosWithAuth()
-            .post('http://localhost:5000/api/logout')
-            .then(res=> {
-                localStorage.removeItem("token");
-                props.history.push('/login');
-            });
+  const handleClick = (e) => { 
+    e.preventDefault()
+      axiosWithAuth()
+          .post('http://localhost:5000/api/logout')
+          .then(res=> {
+              localStorage.removeItem("token");
+              window.location.href = 'http://localhost:3000/api/login'
+          });
 
-    }, []);
-
+  }
   return (
     <Router>
 
@@ -25,7 +25,7 @@ function App() {
         <header>
           Color Picker Sprint Challenge
           <a href="#">login</a>
-          <a data-testid="logoutButton" href="#">logout</a>
+          <a data-testid="logoutButton" href="#" onClick={handleClick}>logout</a>
         </header>
       </div>
       <Switch>
