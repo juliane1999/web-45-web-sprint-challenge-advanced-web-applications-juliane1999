@@ -23,20 +23,24 @@ const BubblePage = () => {
       })
   }, [])
 
-
-
+  
   const toggleEdit = (value) => {
-    setEditing({
-      ...colors,
-      value: true
-    });
+    setEditing(value)
   };
+
+
+  // const toggleEdit = (value) => {
+  //   setEditing({
+  //     ...colors,
+  //     value: true
+  //   });
+  // };
 
   const saveEdit = (editColor) => {
     axiosWithAuth()
       .put(`http://localhost:5000/api/colors`, editColor)
       .then(res=> {
-        setEditing(!editing)
+        setEditing(res.data)
         push(`/colors/${id}`)
       })
   };
