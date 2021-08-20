@@ -16,7 +16,6 @@ function App() {
               localStorage.removeItem("token");
               window.location.href = 'http://localhost:3000/api/login'
           });
-
   }
   return (
     <Router>
