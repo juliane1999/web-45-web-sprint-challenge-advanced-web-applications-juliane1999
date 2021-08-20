@@ -7,7 +7,7 @@ import { useParams, useHistory } from "react-router-dom";
 import axiosWithAuth from "../helpers/axiosWithAuth";
 
 
-const BubblePage = (props) => {
+const BubblePage = () => {
   const [colors, setColors] = useState([]);
   const [editing, setEditing] = useState(false);
   const { id } = useParams()
@@ -34,7 +34,7 @@ const BubblePage = (props) => {
 
   const saveEdit = (editColor) => {
     axiosWithAuth()
-      .put(`http://localhost:5000/api/colors/${id}`, editColor)
+      .put(`http://localhost:5000/api/colors`, editColor)
       .then(res=> {
         setEditing(res.data)
         push(`/colors/${id}`)
