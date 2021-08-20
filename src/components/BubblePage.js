@@ -36,7 +36,7 @@ const BubblePage = () => {
     axiosWithAuth()
       .put(`http://localhost:5000/api/colors`, editColor)
       .then(res=> {
-        setEditing(res.data)
+        setEditing(!editing)
         push(`/colors/${id}`)
       })
   };
