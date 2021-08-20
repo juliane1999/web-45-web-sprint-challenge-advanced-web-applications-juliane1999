@@ -28,14 +28,6 @@ const BubblePage = () => {
     setEditing(value)
   };
 
-
-  // const toggleEdit = (value) => {
-  //   setEditing({
-  //     ...colors,
-  //     value: true
-  //   });
-  // };
-
   const saveEdit = (editColor) => {
     axiosWithAuth()
       .put(`http://localhost:5000/api/colors`, editColor)
@@ -47,11 +39,9 @@ const BubblePage = () => {
 
   const deleteColor = (colorToDelete) => {
     axiosWithAuth()
-      .delete(`http://localhost:5000/api/colors/${id}`, { params: {id: colorToDelete }})
+      .delete(`http://localhost:5000/api/colors/${id}`)
       .then(res => {
-        const del = colors.filter( color => id !== color.id)
-        setColors(del)
-        // setColors(res.data)
+        setColors(colorToDelete)
         push('/bubbles')
       })
   };
