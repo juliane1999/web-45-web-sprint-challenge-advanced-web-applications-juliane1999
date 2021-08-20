@@ -37,7 +37,7 @@ const BubblePage = (props) => {
       .put(`http://localhost:5000/api/colors/${id}`, editColor)
       .then(res=> {
         setEditing(res.data)
-        // push(`/colors/${id}`)
+        push(`/colors/${id}`)
       })
   };
 
@@ -46,9 +46,9 @@ const BubblePage = (props) => {
       .delete(`http://localhost:5000/api/colors/${id}`, { params: {id: colorToDelete }})
       .then(res => {
         const del = colors.filter( color => id !== color.id)
-        setEditing(del)
+        setColors(del)
         // setColors(res.data)
-        // push('bubble-page')
+        push('/bubbles')
       })
   };
 
